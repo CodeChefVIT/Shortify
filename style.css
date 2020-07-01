@@ -5,6 +5,7 @@ body {
     background-color: #161616;
     color: white;
     scroll-behavior:smooth;
+    position: relative;
 }
 * {
 	-webkit-box-sizing: border-box;
@@ -17,9 +18,9 @@ nav{
     background: #161616;
     width: 100%;
     height: 9vh;
-    position: fixed;
+    position: absolute;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     z-index: 100;
 }
@@ -37,6 +38,61 @@ nav ul{
     width: 30%;
     margin: 20px;
 
+}
+nav ul li{
+    padding:5px 10px;
+    transition: all 0.3s ease;
+    color: rgb(150, 150, 150);
+    opacity: 0;
+}
+nav ul li a{
+    color: inherit;
+    text-decoration: none;
+    font-family: inherit;
+}
+nav ul li:hover{
+    color: white;
+}
+.nav-active{
+    color: white;
+    text-shadow: 0 0 5px white;
+}
+nav .login{
+    border: 1px solid white;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+nav .login:hover{
+    box-shadow: 0 0 15px white;
+    color: black;
+}
+
+.hamburger{
+    height: 2.2vh;
+    margin:2.4vh 10px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.hamburger .line1{
+    width: 23px;
+    height: 2px;
+    background-color: white;
+    border-radius: 30%;
+}
+.hamburger .line2{
+    width: 15px;
+    height: 2px;
+    background-color: white;
+    border-radius: 30%;
+}
+.hamburger .line3{
+    width: 10px;
+    height: 2px;
+    background-color: white;
+    border-radius: 30%;
 }
 section{
     height: 100vh;
@@ -56,7 +112,14 @@ section{
     position:absolute;
     top:50%;
     right:10%;
-    transform: translate(0,-50%);
+    transform: translate(15px,-50%);
+    opacity: 0;
+    /* animation:craneMove 0.5s ease infinite; */
+    transform: translate(15px,-50%);
+    opacity: 0;
+    transition: all 0.7s ease 0.8s;
+    animation: craneMove 1s ease infinite;
+    
 }
 
 .cranes span {
@@ -70,7 +133,11 @@ section{
     filter: opacity(0.6);
     
 }
-
+.crane-start{
+    opacity: 1;
+    transform: translate(0,-50%);
+    animation: craneMove 0.7s ease forwards 0.8;
+}
 /* .cranes:hover span {
     animation: appear 1s ease-in;
 } */
@@ -86,11 +153,6 @@ section{
         top: calc((50em - 3em) / 2);
     }
 } */
-@keyframes wingMove{
-    from{
-
-    }
-}
 .head {
     --left: 13;
     --right: 6;
@@ -125,8 +187,12 @@ section{
     --x: 6.7;
     --y: 9.2;
     --rotation: -41.9;
+    animation:wingMove 1s ease infinite;
+    transition: all 0.5s ease;
 }
-
+.crane-start .wing{
+    animation:wingMove 0.7s ease forwards 0.8s;
+}
 .tail {
     --left: 18.6;
     --right: 7.7;
@@ -145,6 +211,35 @@ section{
     --rotation: -99;
 }
 
+@keyframes wingMove{
+    0%{
+        transform: rotate(-41.9deg)
+                     translate(0px)
+                     translateY(0px);
+    }
+    50%{
+        transform: rotate(-32deg)
+                 translateX(10px)
+                 translateY(30px);
+    }
+    100%{
+        transform: rotate(-41.9deg)
+                 translate(0px)
+                 translateY(0px);;
+    }
+}
+@keyframes craneMove{
+    0%{
+        transform:  translateY(calc(-50%));
+    }
+    50%{
+        transform: translateY(calc(-50% - 30px));;
+    }
+    100%{
+        transform: translateY(calc(-50%));
+    }
+}
+
 #home h1{
     position: relative;
     margin-left:10% ;
@@ -156,7 +251,14 @@ section{
     line-height: 1.5;
     font-family: 'Quicksand','sans-serif';
     font-weight: 100;
-    font-size: 1.2em;
+    font-size: 0.9em;
+    opacity: 0;
+    transform: translateY(-15px);
+}
+#home h1 .head-h1{
+    font-size: 3.5em;
+    opacity: 0;
+    transform: translateY(-15px);
 }
 
 #home button{
@@ -171,8 +273,26 @@ section{
     font-weight: 100;
     font-size: 1.7em;
     transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateX(-15px);
 }
+@keyframes start{
+    from{
 
+    }
+    to{
+        opacity: 1;
+        transform: translate(0,0);
+    }
+}
+@keyframes startLink{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 #home button:hover{
     box-shadow: 0 0 20px white;
     background-color:white ;
@@ -198,10 +318,11 @@ section{
     position: absolute;
     top:0;
     left:0;
-    transition: all 0.7s ease,top 0.6s ease;
+    transition: all 1s ease,top 0.9s ease;
     transform-style: preserve-3d;
     z-index: 20;
     box-shadow: 0 0 7px white;
+    perspective: 1px;
 }
 .paper-upper-front{
     width:100%;
@@ -255,17 +376,18 @@ section{
 
 .arrow .line{
     position: absolute;
-    bottom: 2%;
+    top: 81%;
     left:50%;
     border: none;
     width: 1px;
-    height: 17%;
+    height: 0%;
     background-color: white;
+    transition: all 0.5s ease 1s;
 }
 
 .arrow .head .right,
 .arrow .head .left{
-    width:10px;
+    width:0px;
     background-color: white;
     position: absolute;
     bottom:calc(2% + 0.5px);
@@ -274,12 +396,20 @@ section{
 .arrow .head .right{
     left: calc(50% - 1.5px);
     transform: rotateZ(-45deg);
+    transition: all 0.3s ease 1.8s;
 }
 .arrow .head .left{
     left: calc(50% - 8.5px);
     transform: rotateZ(45deg);
+    transition: all 0.3s ease 1.5s;
 }
-
+.ar-active .line{
+    height: 17%;
+}
+.ar-active .head .right,
+.ar-active .head .left{
+    width: 10px;
+}
 .paper-lower input{
     margin:auto;
     display: block;
@@ -321,13 +451,17 @@ section{
 #knowMore .info{
     width:80%;
     margin:20px auto;
+    position: relative;
+    height: 200px;
 }
 .info .img{
     display: inline-block;
-    width:175px;
-    height: 175px;
+    width:200px;
+    height: 200px;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 5px white;
+    position: absolute;
+    top:0;
 }
 .info .cont{
     width:80%;
@@ -336,10 +470,140 @@ section{
     font-family: 'quickSand','sans-serif';
     font-weight: 200;
     text-align: center;
-    line-height: 2;
-    align-items: center;
     box-sizing: border-box;
+    position: absolute;
+    top:50%;
+    transform: translate(0,-50%);
     
+}
+.left .cont{
+    left:0%;
+    text-align: left;
+    transform: translateX(-10px);
+    opacity: 0;
+    transition: all 0.5s ease 1s;
+}
+
+.right .cont{
+    right:0px;
+    text-align: right;
+    transform: translateX(10px);
+    transition: all 0.5s ease 1s;
+    opacity: 0;
+}
+.left .img{
+    right:0%;
+}
+
+.right .img{
+    left:0%;
+}
+
+.bar-graph,.manage{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+.bar-graph .horizon{
+    position: absolute;
+    bottom: 20%;
+    width: 0%;
+    height: 1px;
+    background-color: rgb(51, 50, 50);
+    margin: 0 5%;
+    transition: all 0.4s ease 1s;
+}
+.bar-graph .bar1{
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    width: 20%;
+    height: 0%;
+    background-color: rgb(51, 50, 50);
+    transition: all 0.7s ease 1s;
+}
+.bar-graph .bar2{
+    position: absolute;
+    bottom: 20%;
+    left: 39%;
+    width: 20%;
+    height: 0%;
+    background-color: rgb(51, 50, 50);
+    transition: all 0.7s ease 1.2s;
+}
+.bar-graph .bar3{
+    position: absolute;
+    bottom: 20%;
+    left: 69%;
+    width: 20%;
+    height: 0%;
+    background-color: rgb(51, 50, 50);
+    transition: all 0.6s ease 1.4s;
+}
+.bg-active .horizon{
+    width:90%;
+}
+.bg-active  .bar1{
+    height: 30%;
+}
+.bg-active  .bar2{
+    height: 50%;
+}
+.bg-active  .bar3{
+    height: 70%;
+}
+.manage .block{
+    position: absolute;
+    width:40%;
+    height: 10%;
+    background-color: rgb(51, 50, 50);
+    /* transition: all 0.5s ease 1s; */
+}
+.block:nth-child(odd){
+    left:10%;
+    /* transform: translateX(-50%); */
+}
+.block:nth-child(even){
+    right: 10%;
+    /* transform: translateX(50%); */
+}
+.ma-active .block:nth-child(odd){
+    left:50%;
+    transform: translateX(-50%);
+}
+.ma-active .block:nth-child(even){
+    right: 50%;
+    transform: translateX(50%);
+}
+.block:nth-child(1){
+    top:15%;
+    transition: all 0.5s ease 1s;
+}
+.block:nth-child(2){
+    top:35%;
+    transition: all 0.5s ease 1.2s;
+}
+.block:nth-child(3){
+    top:55%;
+    transition: all 0.5s ease 1.3s;
+}
+.block:nth-child(4){
+    top:75%;
+    transition: all 0.5s ease 1.5s;
+}
+.info .cont-active{
+    opacity: 1;
+    transform: translateX(0);
+}
+@keyframes slideLink{
+    from{
+        opacity: 0;
+        transform: translate(5px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(0);
+    }
 }
 @media screen and (max-width:1100px){
     #home h1{
@@ -349,7 +613,11 @@ section{
         right:2%;
     }
 }
-
+@media screen and (max-width:1000px){
+    .info .cont{
+        font-size:18px;
+    }
+} 
 @media screen and (max-width:900px){
     #home h1 span{
         font-size: 1em;
@@ -362,14 +630,82 @@ section{
     #home h1{
         margin-left:10% ;
     }
-    #home h1 span{
-        font-size: 1.2em;
-    }
     .paper-container{
-        width: 300px;
-        height: 300px;
+        width: 330px;
+        height: 330px;
     }
     #fp-nav ul{
         display: none;
+    }
+    .info .img, .info .cont{
+        position: relative;
+        display: inline-block;
+        top:0;
+        text-align: center;
+        /* transform: translateY(0); */
+        font-size: 15px;
+        width: 100%;
+    }
+    .info .img{
+        height: 150px;
+        width: 150px;
+        margin: 5px calc((100% - 150px) / 2);
+    }
+    .arrow .line{
+        top:84%;
+        height: 0;
+    }
+    .ar-active .line{
+        height: 14%;
+    }
+    .hamburger{
+        display: flex;
+    }
+    nav ul{
+        padding: 30%;
+        position: absolute;
+        right: 0;
+        top: 7vh;
+        margin: 0;
+        flex-direction: column;
+        width: 50%;
+        height: 93vh;
+        transform: translate(100%,0);
+        background-color:white;
+        color: black;
+        align-items: center;
+        transition: all 0.5s ease;
+    }
+    
+    #knowMore .info{
+        height: auto;
+    }
+    nav ul li{
+        opacity: 0;
+        transform: translate(5px);
+        padding:5px 10px;
+        transition: all 0.3s ease;
+        color: black;
+        border-radius: 5px;
+    }
+    nav ul li:hover{
+        color: black;
+    }
+    .nav-active{
+        color: black;
+        border:1px solid black;
+        text-shadow: none;
+    }
+    .nv-active{
+        transform: translate(0,0);
+    }
+    nav .login{
+        border: 1px solid white;
+        background-color: black;
+        color: white;
+    }
+    nav .login:hover{
+        box-shadow: 0 0 10px white;
+        color: black;
     }
 }

@@ -15,17 +15,22 @@
 <body>
     <nav>
         <h1>shortify</h1>
-        <!-- <ul>
-            <li><a href="#section1">Home</a></li>
-            <li><a href="#section2">Know more</a></li>
-            <li>card</li>
-        </ul> -->
+        <ul>
+            <li class="nav-active"><a href="#first">Home</a></li>
+            <li><a href="#second">Uses</a></li>
+            <li><a href="#third">card</a></li>
+            <li class="login"><a href="#">Login</a></li>
+        </ul>
+        <div class="hamburger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
     </nav>
     <div id="fullpage">
         <section class="section" id="home">
             <h1>
-                <span class="home-head">Lorem ipsum dolor sit amet.</span>
-                <span class="home-head">Lorem ipsum dolor sit amet consectetur.</span>
+                <span class="head-h1">Shortify</span>
                 <span class="home-head">Lorem ipsum dolor sit amet consectetur.</span>
                 <a href="#third"><button class="headder-button">Shorten</button></a>
             </h1>
@@ -46,13 +51,27 @@
             </div>
         </section>
         <section class="section" id="knowMore">
-            <div class="info">
-                <div class="cont">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, rem!</div>    
-                <div class="img"></div>
+            <div class="info left">
+                <div class="img">
+                    <div class="bar-graph">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                        <div class="horizon"></div>
+                    </div>   
+                </div>
+                <p class="cont">Shorten your link size, grow your business</p>    
             </div>
-            <div class="info">
-                <div class="img"></div>
-                <div class="cont">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, minima.</div>
+            <div class="info right">
+                <div class="img">
+                    <div class="manage">
+                        <div class="block"></div>
+                        <div class="block"></div>
+                        <div class="block"></div>
+                        <div class="block"></div>
+                    </div>
+                </div>
+                <p class="cont">Get more manageable and easy to track links. </p>
             </div>
             <div class="arrow">
                 <div class="line"></div>
@@ -65,19 +84,20 @@
         <section class="section" id="card">
             <div class="paper-container">
                 <div class="paper">
-                  <div class="paper-upper">
+                  <div class="paper-upper effect">
                     <div class="paper-upper-front">
                         <p class="card-text">Enter your link here!</p>
                     </div>
-                    <div class="paper-upper-back"></div>
+                    <div class="paper-upper-back">
+                        
+                    </div>
                   </div>
                   <div class="paper-lower">
-                      <input type="text" placeholder="Enter link" value=''>
+                      <input type="text" class="" placeholder="Enter link" onclick="copyfn()" value=''>
                       <button class="card-submit">Submit</button>
                   </div>
                 </div>
               </div>
-              <button id="effect">effect</button>
             </div>
         </section>
     </div>
