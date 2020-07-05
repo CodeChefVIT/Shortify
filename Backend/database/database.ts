@@ -1,7 +1,7 @@
 const monk = require('monk')
 require('dotenv').config();
 
-const db = monk(process.env.MONGO_URI)
+const db = monk('mongodb://localhost:27017/shortify')
 
 const urls = db.get('urls');
 db.then(() => {

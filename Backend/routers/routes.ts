@@ -5,12 +5,7 @@ const schema = require('../model/schema.ts')
 const {nanoid} = require('nanoid')
 const urls = require('../database/database.ts')
 
-router.use(express.static('./public'))
 
-// Getting A Short URL
-router.get('/url/:id', (req, res) => {
-
-})
 
 // Redirecting a URL 
 router.get('/:id', async (req, res) => {
