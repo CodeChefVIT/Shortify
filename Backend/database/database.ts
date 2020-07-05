@@ -7,6 +7,6 @@ const urls = db.get('urls');
 db.then(() => {
     console.log(`Connected To Server`)
 })
-urls.createIndex('slug')
+urls.createIndex('shortit')
 
 module.exports = urls 

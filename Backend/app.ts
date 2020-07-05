@@ -15,7 +15,6 @@ app.use(cors())
 app.use(express.json())
 
 app.use(routes)
-app.use(express.static('./public'))
 
 app.listen(port ,(req, res) => {
     console.log(`Listening on Port ${port}`)

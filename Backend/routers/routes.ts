@@ -9,38 +9,38 @@ const urls = require('../database/database.ts')
 
 // Redirecting a URL 
 router.get('/:id', async (req, res) => {
-    const { id: slug} = req.params;
+    const { id: shortit} = req.params;
     try {
-        const url = await urls.findOne({slug})
+        const url = await urls.findOne({shortit})
         if (url) {
             res.redirect(url.url)
         }
-        res.redirect(`/?error=${slug} not found`)
+        res.redirect(`/?error=${shortit} not found`)
     } catch (e){
-        res.redirect(`/?error=${slug} not found`)
+        res.redirect(`/?error=${shortit} not found`)
     }
 })
 
 //Create a short url 
 router.post('/url', async (req, res, next) => {
-    let {slug, url} = req.body
+    let {shortit, url} = req.body
     try {
         await schema.validate({
-            slug,
             url,
+            shortit,
         });
-        if (!slug){
-            slug = nanoid(8);
+        if (!shortit){
+            shortit = nanoid(8);
         }else {
-            const existing = await urls.findOne({slug});
+            const existing = await urls.findOne({shortit});
             if (existing)
                 throw new Error('Slug in use')
         }
-        slug = slug.toLowerCase();
+        shortit = shortit.toLowerCase();
         const secret = nanoid(10).toLowerCase()
         const newUrl = {
             url,
-            slug,
+            shortit,
         }
         const created = await urls.insert(newUrl);
         res.json(created);
