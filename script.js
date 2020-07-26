@@ -20,8 +20,16 @@ new fullpage('#fullpage', {
             document.querySelectorAll('.cont')[0].classList.add('cont-active');
             document.querySelectorAll('.cont')[1].classList.add('cont-active');
             document.querySelector('.manage').classList.add('ma-active');
+            document.querySelector('.semi').style.transform = "rotateZ(-90deg) translateX(-200px)";
 
             (setTimeout(()=>{document.querySelector('#knowMore .arrow').classList.add('ar-active');},500));
+        }
+        if(destination.index===0){
+            document.querySelector('.arrow').classList.add('ar-active');
+            document.querySelector('.semi').style.transform = "";
+        }
+        if(origin.index===0){
+            document.querySelector('.arrow').classList.remove('ar-active');
         }
         if(origin.index===1){
             document.querySelector('.bar-graph').classList.remove('bg-active');
