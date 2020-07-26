@@ -318,11 +318,12 @@ section{
     position: absolute;
     top:0;
     left:0;
-    transition: all 1s ease,top 0.9s ease;
+    transition: all 1s ease;
     transform-style: preserve-3d;
+    transform-origin:bottom ;
     z-index: 20;
     box-shadow: 0 0 7px white;
-    perspective: 1px;
+    perspective: 800px;
 }
 .paper-upper-front{
     width:100%;
@@ -362,7 +363,6 @@ section{
 }
 .effect{
     transform: rotateX(180deg);
-    top:50%;
     background-color:rgba(255, 255, 255, 0.9);
 }
 
@@ -373,7 +373,88 @@ section{
     font-family: 'Quicksand','sans-serif';
     font-size: 200%;
 }
-
+.semi{
+    transition: all 0.7s ease;
+    transform-origin: right;
+}
+.semi div{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-top-left-radius: 100%;
+}
+.semi .semi1{
+    /* width:250px;
+    height: 250px; */
+    background-color: rgba(255, 255, 255, 0.41);
+    animation: semi1A 0.5s ease-in forwards 1s;
+}
+.semi .semi2{
+    /* width:200px;
+    height: 200px; */
+    background-color: rgba(255, 255, 255, 0.2);
+    animation: semi2A 0.5s ease-in forwards 1s;
+}
+.semi .semi3{
+    /* width:150px;
+    height: 150px; */
+    background-color: rgba(255, 255, 255, 0.2);
+    animation: semi3A 0.5s ease-in forwards 1s;
+}
+@keyframes semi1A{
+        0%{
+            width:0px;
+            height: 0px;
+        }
+        50%{
+            width:280px;
+            height: 280px;
+        }
+        75%{
+            width:230px;
+            height: 230px;
+        }
+        100%{
+            width:250px;
+            height: 250px;
+        }
+}
+@keyframes semi2A{
+        0%{
+            width:0px;
+            height: 0px;
+        }
+        50%{
+            width:230px;
+            height: 230px;
+        }
+        75%{
+            width:170px;
+            height: 170px;
+        }
+        100%{
+            width:200px;
+            height: 200px;
+        }
+}
+@keyframes semi3A{
+        0%{
+            width:0px;
+            height: 0px;
+        }
+        50%{
+            width:180px;
+            height: 180px;
+        }
+        75%{
+            width:120px;
+            height: 120px;
+        }
+        100%{
+            width:150px;
+            height: 150px;
+        }
+}
 .arrow .line{
     position: absolute;
     top: 81%;
@@ -662,7 +743,7 @@ section{
         display: flex;
     }
     nav ul{
-        padding: 30%;
+        padding: 10%;
         position: absolute;
         right: 0;
         top: 7vh;

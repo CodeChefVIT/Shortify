@@ -1,0 +1,350 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+nav{
+    height: 7vh;
+    display: flex;
+    justify-content: space-evenly;
+    color: white;
+    font-size: 2em;
+    font-family: 'Pacifico','cursive';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+body{
+    margin:0;
+    padding: 0;
+    height: 100vh;
+    box-sizing: border-box;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: 'Poppins', sans-serif;
+}
+section{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+}
+.form-container{
+    position: relative;
+    width:300px;
+    height: 450px;
+    margin: auto;
+    
+}
+.allPaper{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    /* transition: all 0.5s ease; */
+    
+}
+ .paper,.login-form,.signup-form{
+    position: absolute;
+    width:100%;
+    height:100%;
+    left:0;
+    top:0
+}
+.login-form{
+    background-color: rgba(255, 255, 255, 0.877);
+    backface-visibility: hidden;
+    opacity: 0;
+    /* pointer-events: none; */
+    transition: opacity 0s ease 1.05s;
+}
+
+.anim .login-form{
+    opacity: 1;
+}
+.signup-form{
+    background-color: rgba(255, 255, 255, 0.877);
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    opacity: 0;
+    transition: opacity 0s ease 1.1s;
+}
+.anim .signup-form{
+    opacity:1;
+}
+@keyframes cardFlip{
+    10%{
+        transform: scale(1.1);
+        box-shadow: 0px 0px 10px white;
+    }
+    90%{
+        transform:scale(1.1) rotateY(180deg);
+        box-shadow: 0px 0px 10px white,
+                    0px 0px 15px white;
+                    /* 0px 0px 30px white; */
+    }
+    100%{
+        transform: scale(1) rotateY(180deg);
+        box-shadow: none;
+    }
+}
+@keyframes cardFlipB{
+    0%{
+        transform: rotateY(180deg);
+    }
+    10%{
+        transform: scale(1.1) rotateY(180deg);
+        box-shadow: 0px 0px 10px white,
+                    0px 0px 15px white;
+                    /* 0px 0px 30px white; */
+    }
+    90%{
+        transform:scale(1.1) rotateY(0deg);
+        box-shadow: 0px 0px 10px white,
+                    0px 0px 15px white;
+                    /* 0px 0px 30px white; */
+    }
+    100%{
+        transform: scale(1) rotateY(0deg);
+        box-shadow:none ;
+    }
+}
+.cardF{
+    animation:cardFlip 2s ease forwards;
+    /* transform: rotateY(180deg); */
+}
+.paper .start{
+    position: absolute;
+    height: calc(100% / 3);
+    width: 100%;
+    left: 0;
+    top: calc(100% / 3);
+    border:none;
+    padding: 0;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.877);
+}
+.start .start-up{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left:0px;
+    top:0;
+    background-color: rgba(255, 255, 255, 0.877);
+    transform-origin: top;
+    transition: all 0.5s ease-in;
+    border:none;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+}
+.anim .start-up{
+    transform: rotateX(180deg);
+    opacity: 1;
+}
+.start-up .end{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.877);
+    left:-2px;
+    top: 0;
+    transform-origin:right ;
+    transition: all 0.5s ease-in 0.55s;
+    border:none;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+}
+.anim .start-up .end{
+    transform: rotateY(180deg) translateX(-0.5px);
+    opacity: 1;
+}
+.start .start-down{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left:50%;
+    top:0;
+    background-color: rgba(255, 255, 255, 0.877);
+    transform-origin:bottom ;
+    transition: all 0.5s ease-in;
+    border:none;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+}
+.anim .start-down{
+    transform: rotateX(-180deg) translateY(0.6px);
+    opacity: 1;
+}
+.start-down .end{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.877);
+    left:0;
+    top: 0;
+    transform-origin:left ;
+    transition: all 0.5s ease-in 0.55s;
+    border:none;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+}
+.anim .start-down .end{
+    transform: rotateY(180deg);
+    opacity: 1;
+}
+.headding{
+    text-align: center;
+    font-size: 2.3em;
+    text-transform: uppercase;
+    height: 20%;
+    width: 100%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+input{
+    width:100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top:10% ;
+    padding-left: 10px;
+    background: none;
+    border:none;
+    outline: none;
+    font-size: 16px;
+}
+form{
+    height: 80%;
+    margin-top:10% ;
+}
+form div{
+    height: 15%;
+    margin:3% 0;
+    position: relative;
+}
+form div i{
+    width: 20%;
+    position: absolute;
+    bottom: 0;
+    left: 1%;
+    font-size: 1.7em;
+}
+.single-form{
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 83%;
+    margin-left: 13%;
+    display: inline-block;
+}
+label{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left:0;
+    bottom:0;
+    pointer-events: none;
+    border-bottom: 1px solid grey;
+    
+}
+label span{
+    pointer-events: none;
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+    transition: all 0.5s ease;
+}
+label::after{
+    content:"";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border-bottom: 2px solid black;
+    left: 0;
+    bottom: -0.5px;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+
+}
+input:focus + label span, input:valid + label span{
+    transform: translateY(-115%);
+    color: black;
+    font-size: 14px;
+}
+input:focus + label::after, input:valid + label::after{
+    transform: translateX(0%);
+}
+.submit-btn{
+    margin: 10% 0;
+}
+.alternate{
+    margin: 0 ;
+    font-weight: 400;
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+.alternate button{
+    background: none;
+    border: none;
+    text-decoration: underline;
+    color: black;
+    font-size: 16px;
+    outline: none;
+   
+}
+.submit-btn button{
+    margin: 0% 15%;
+    display: inline-block;
+    height: 100%;
+    width: 70%;
+    background: black;
+    color: white;
+    font-size: 1.3em;
+    border: none;
+    font-weight: 100;
+    font-family: 'Poppins' , "sans-serif";
+    transition: all 0.5s ease;
+    
+}
+
+.submit-btn button:hover{
+    transform: scale(1.1);
+}
+
+.login-form form div{
+    margin: 7% 0;
+}
+.login-form .submit-btn{
+    margin-top:13%;
+    margin-bottom: 5px;
+}
+.login-form a{
+    font-size: 13px;
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: underline;
+}
+.login-form .alternate{
+    font-size: 13px;
+}
+.login-form .alternate button{
+    font-size: 15px;
+}
+@media screen and (max-width:600px){
+    .form-container{
+        width:250px;
+        height: 375px;
+        
+    }
+}
