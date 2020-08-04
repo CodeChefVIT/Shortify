@@ -20,13 +20,11 @@ new fullpage('#fullpage', {
             document.querySelectorAll('.cont')[0].classList.add('cont-active');
             document.querySelectorAll('.cont')[1].classList.add('cont-active');
             document.querySelector('.manage').classList.add('ma-active');
-            // document.querySelector('.semi').style.transform = "rotateZ(-90deg) translateX(-200px)";
 
             (setTimeout(()=>{document.querySelector('#knowMore .arrow').classList.add('ar-active');},500));
         }
         if(destination.index===0){
             document.querySelector('.arrow').classList.add('ar-active');
-            // document.querySelector('.semi').style.transform = "";
         }
         if(origin.index===0){
             document.querySelector('.arrow').classList.remove('ar-active');
@@ -71,6 +69,19 @@ document.querySelector(".card-submit").addEventListener("click",function(){
         },1000)
     }
     else{
+        var data = {
+            "oldUrl":document.querySelector(".paper-lower input").value
+        }
+        console.log(data) 
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener("readystatechange", function() {
+              if(this.readyState === 4) {
+                console.log(this.responseText);
+              }
+            });
+            xhr.open("POST", "https://api-shorty.herokuapp.com/generate/shortUrl");
+            xhr.send(JSON.stringify(data));
+
         setTimeout(()=>{
             document.querySelector(".card-text").innerHTML="Click on the link to copy";
             document.querySelector(".paper-lower input").value = "<shortened link here>";
@@ -102,6 +113,7 @@ const navbar = ()=>{
     const navLinks = document.querySelectorAll('nav ul li')
     document.querySelector('.hamburger').addEventListener('click',()=>{
     document.querySelector('nav ul').classList.toggle('nv-active')
+    document.querySelector('.hamburger').classList.toggle('ham-active');
     navLinks.forEach((link,index)=>{
         if(link.style.animation.includes('slideLink')){
             link.style.animation =''
@@ -112,4 +124,5 @@ const navbar = ()=>{
     });
 });
 };
+
 navbar();
