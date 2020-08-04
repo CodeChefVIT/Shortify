@@ -315,17 +315,47 @@ input:focus + label::after, input:valid + label::after{
     transition: all 0.5s ease;
     
 }
-
-.submit-btn button:hover{
-    transform: scale(1.1);
+@keyframes fadeIn{
+    to{
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }
-
+.submit-btn button:hover{
+    transform: scale(1.05);
+}
+.login-form{
+    
+}
 .login-form form div{
     margin: 7% 0;
+}
+.login-form .headding{
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease 1s  forwards;
+}
+.login-form .email{
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease 1.2s  forwards;
+}
+.login-form .password{
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease 1.4s  forwards;
 }
 .login-form .submit-btn{
     margin-top:13%;
     margin-bottom: 5px;
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease 1.6s  forwards;
+}
+.login-form .extra{
+    transform: translateY(-10px);
+    opacity: 0;
+    animation: fadeIn 0.8s ease 1.8s  forwards;
 }
 .login-form a{
     font-size: 13px;
@@ -340,6 +370,44 @@ input:focus + label::after, input:valid + label::after{
 }
 .login-form .alternate button{
     font-size: 15px;
+}
+.exit{
+    position: absolute;
+    width:30px;
+    height: 30px;
+    top:10px;
+    right:10px;
+    /* background-color: pink; */
+}
+@keyframes opacity1{
+    to{
+        opacity: 1;
+    }
+}
+.exit div{
+    position: absolute;
+    height: 1px;
+    width: 20px;
+    background-color: black;
+    border: none;
+    top:50%;
+    left:50%;
+    opacity: 0;
+    animation: opacity1 0.8s ease 1.2s  forwards;
+}
+.exit .exit1{
+    transform: translateX(-50%) rotateZ(45deg);
+    transition: all 0.5s ease;
+}
+.exit .exit2{
+    transform: translateX(-50%) rotateZ(-45deg);
+    transition: all 0.5s ease;
+}
+.exit:hover .exit1{
+    transform: translateX(-50%) rotateZ(-45deg);
+}
+.exit:hover .exit2{
+    transform: translateX(-50%) rotateZ(45deg);
 }
 @media screen and (max-width:600px){
     .form-container{

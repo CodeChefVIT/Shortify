@@ -81,18 +81,21 @@ nav .login:hover{
     height: 2px;
     background-color: white;
     border-radius: 30%;
+    transition: all 0.5s ease;
 }
 .hamburger .line2{
     width: 15px;
     height: 2px;
     background-color: white;
     border-radius: 30%;
+    transition: all 0.5s ease;
 }
 .hamburger .line3{
     width: 10px;
     height: 2px;
     background-color: white;
     border-radius: 30%;
+    transition: all 0.5s ease;
 }
 section{
     height: 100vh;
@@ -525,8 +528,7 @@ section{
 
 }
 .paper-lower button:hover{
-    background-color: rgb(109, 108, 108);
-    color:black;
+    transform: scale(1.05);
 }
 
 #knowMore .info{
@@ -676,6 +678,17 @@ section{
     opacity: 1;
     transform: translateX(0);
 }
+.ham-active.hamburger .line1{
+    transform: rotateZ(45deg) translate(-5px,10px);
+
+}
+.ham-active.hamburger .line2{
+    opacity: 0;
+}
+.ham-active.hamburger .line3{
+    width: 23px;
+    transform: rotateZ(-45deg) translate(-1px,-13px);
+}
 @keyframes slideLink{
     from{
         opacity: 0;
@@ -744,6 +757,7 @@ section{
     }
     nav ul{
         padding: 10%;
+        padding-bottom: 50%;
         position: absolute;
         right: 0;
         top: 7vh;
