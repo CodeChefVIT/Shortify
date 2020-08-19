@@ -57,12 +57,11 @@ fullpage_api.setAllowScrolling(true);
 let ctc = null;
 document.querySelector(".card-submit").addEventListener("click",function(){
     document.querySelector(".paper-upper").classList.toggle('effect');
-    if(document.querySelector(".card-submit").innerHTML=="Try again"){
+    if(document.querySelector(".card-submit").innerHTML=="Try Again"){
         setTimeout(()=>{
             document.querySelector(".card-text").innerHTML="Enter your link here!";
-            document.querySelector(".paper-lower input").value = "";
             document.querySelector(".paper-lower input").readOnly = false;
-            // document.querySelector(".paper-lower input").getAttribute('onclick')="";
+            document.querySelector(".paper-lower input").value = "";
             ctc=null;
             document.querySelector(".card-submit").innerHTML="Submit";
             document.querySelector(".paper-upper").classList.toggle('effect');
@@ -72,26 +71,34 @@ document.querySelector(".card-submit").addEventListener("click",function(){
         var data = {
             "oldUrl":document.querySelector(".paper-lower input").value
         }
-        console.log(data) 
+         console.log(data.oldUrl) 
             var xhr = new XMLHttpRequest();
             xhr.addEventListener("readystatechange", function() {
               if(this.readyState === 4) {
-                console.log(this.responseText);
+                  if(this.status==200 || this.status==201){
+                    setTimeout(()=>{
+                        let newData = JSON.parse(this.responseText)
+                        document.querySelector(".card-text").innerHTML="Click on the link to copy";
+                        document.querySelector(".paper-lower input").value = newData.shortUrl;
+                        document.querySelector(".paper-lower input").readOnly = true;
+                        ctc = document.querySelector('.c-to-c');
+                        document.querySelector(".card-submit").innerHTML="Try Again";
+                        document.querySelector(".paper-upper").classList.toggle('effect');
+                    },0)
+                  }
+                  else{
+                    let newData = JSON.parse(this.responseText)
+                    document.querySelector(".card-text").innerHTML=newData.message;
+                    document.querySelector(".paper-lower input").value = "";
+                    ctc = document.querySelector('.c-to-c');
+                    document.querySelector(".card-submit").innerHTML="Submit";
+                    document.querySelector(".paper-upper").classList.toggle('effect');
+                  }
               }
             });
             xhr.open("POST", "https://api-shorty.herokuapp.com/generate/shortUrl");
+            xhr.setRequestHeader('Content-Type', 'application/json');
             xhr.send(JSON.stringify(data));
-
-        setTimeout(()=>{
-            document.querySelector(".card-text").innerHTML="Click on the link to copy";
-            document.querySelector(".paper-lower input").value = "<shortened link here>";
-            document.querySelector(".paper-lower input").readOnly = true;
-            document.querySelector(".paper-lower input").value = "<shortened link here>";
-            // document.querySelector(".paper-lower input").getAttribute('onclick')= copyfn();
-            ctc = document.querySelector('.c-to-c');
-            document.querySelector(".card-submit").innerHTML="Try again";
-            document.querySelector(".paper-upper").classList.toggle('effect');
-        },1000)
     }
 });
 const copyfn=()=>{
