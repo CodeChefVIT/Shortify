@@ -46,7 +46,7 @@ new fullpage('#fullpage', {
         document.querySelector('#home button').style.animation=`start 0.7s ease forwards 0.8s`;
         document.querySelector('.cranes').classList.add('crane-start');
         document.querySelector('nav h1').style.animation=`startLink 0.7s ease forwards`
-        document.querySelectorAll('nav ul li').forEach((link,index)=>{
+        document.querySelectorAll('nav>ul>li').forEach((link,index)=>{
                 link.style.animation = `startLink 0.5s ease forwards ${index/7 + 0.2}s`
         });
         document.querySelector('.arrow').classList.add('ar-active');
@@ -55,6 +55,7 @@ new fullpage('#fullpage', {
 });
 fullpage_api.setAllowScrolling(true);
 let ctc = null;
+let userId=null;
 document.querySelector(".card-submit").addEventListener("click",function(){
     document.querySelector(".paper-upper").classList.toggle('effect');
     if(document.querySelector(".card-submit").innerHTML=="Try Again"){
@@ -69,7 +70,8 @@ document.querySelector(".card-submit").addEventListener("click",function(){
     }
     else{
         var data = {
-            "oldUrl":document.querySelector(".paper-lower input").value
+            "oldUrl":document.querySelector(".paper-lower input").value,
+            "id":userId
         }
          console.log(data.oldUrl) 
             var xhr = new XMLHttpRequest();
@@ -98,6 +100,7 @@ document.querySelector(".card-submit").addEventListener("click",function(){
             });
             xhr.open("POST", "https://api-shorty.herokuapp.com/generate/shortUrl");
             xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader("Authorization", "JWT "+userToken);
             xhr.send(JSON.stringify(data));
     }
 });
@@ -132,4 +135,25 @@ const navbar = ()=>{
 });
 };
 
+const local = ()=>{
+    let user=JSON.parse(localStorage.getItem('userInfo'))
+    
+    let loginLi = document.querySelector(".login");
+    console.log(user)
+    if(user){
+        userId=user._id
+        userToken=JSON.parse(localStorage.getItem('userToken'))
+        loginLi.innerHTML='<a href="#">'+user.name+'</a><ul><li><a href="./allUrl.html">My URLs</a></li><li class="login-drop">Logout</li></ul>';
+        document.querySelector(".login-drop").addEventListener("click",()=>{
+            localStorage.removeItem('userInfo');
+            localStorage.removeItem('userToken');
+            local();
+        });
+    }
+    else{
+        loginLi.innerHTML='<a href="./login.html">Login</a>'
+    }
+
+}
+local();
 navbar();

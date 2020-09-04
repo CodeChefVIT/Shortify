@@ -62,10 +62,56 @@ nav .login{
     background-color: white;
     color: black;
     border-radius: 5px;
+    position: relative;
 }
 nav .login:hover{
     box-shadow: 0 0 15px white;
     color: black;
+}
+.login ul{
+    position: absolute;
+    top:calc( 100% - 3px );
+    left:0px;
+    /* transform: translateX(-50%); */
+    display: flex;
+    flex-direction: column;
+    /* min-width: 90px; */
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin:0;
+    font-size:15px ;
+    pointer-events: none;
+} 
+.login ul li{
+    text-align: center;
+    width: 100%;
+    padding: 10px 0;
+    background-color: white;
+    color:black;
+    transform:translateX(20px);
+    transition: all 0.3s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+.login ul li:hover{
+    background-color: rgb(228, 225, 225);
+    color: black;
+}
+.login ul li.login-drop{
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transform: translateX(-20px);
+    
+}
+.login a + ul{
+    pointer-events: none;
+}
+
+.login a:hover + ul>li, .login a +ul:hover>li{
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: all;
 }
 
 .hamburger{
@@ -679,15 +725,15 @@ section{
     transform: translateX(0);
 }
 .ham-active.hamburger .line1{
-    transform: rotateZ(45deg) translate(-5px,10px);
-
+    transform:translate(0px,1vh) rotateZ(45deg);
+    width: 23px;
 }
 .ham-active.hamburger .line2{
     opacity: 0;
 }
 .ham-active.hamburger .line3{
     width: 23px;
-    transform: rotateZ(-45deg) translate(-1px,-13px);
+    transform:translate(0px,-1vh) rotateZ(-45deg) ;
 }
 @keyframes slideLink{
     from{
