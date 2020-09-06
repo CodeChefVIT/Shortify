@@ -849,4 +849,8 @@ section{
         box-shadow: 0 0 10px white;
         color: black;
     }
+    nav .login ul{
+        height: 150px;
+        transform: translate(0,10px);
+    }
 }
