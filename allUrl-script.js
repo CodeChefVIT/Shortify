@@ -48,19 +48,23 @@ navbar();
 
 console.log(userToken);
 var data ={
-    "id":userId
+    id:userId
 };    
 console.log(data)
 var xhr = new XMLHttpRequest();
-xhr.withCredentials = false;
-xhr.addEventListener("readystatechange", function() {
-  if(this.readyState === 4) {
-    console.log(this.responseText);
-  }
-});
-xhr.open("GET", "https://shortify-api.herokuapp.com/user/allUrls");
-xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+xhr.open("GET", "https://shortify-api.herokuapp.com/user/allUrls/"+userId);
 xhr.setRequestHeader("Authorization", "JWT "+userToken);
 xhr.setRequestHeader('Content-Type', 'application/json');
-
-xhr.send(JSON.stringify(data));
+xhr.send();
+xhr.onload=function()
+{
+  if(this.status==200)
+  {
+    var data=JSON.parse(this.responseText)
+    console.log(data);
+  }
+  else{
+    var data=JSON.parse(this.responseText)
+    console.log(data);
+  }
+}
