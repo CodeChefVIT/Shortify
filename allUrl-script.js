@@ -68,3 +68,6 @@ xhr.onload=function()
     console.log(data);
   }
 }
+document.querySelector(".url-upper i").addEventListener("click",()=>{
+  document.querySelector(".url-container").classList.toggle("url-active");
+})
