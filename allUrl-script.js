@@ -48,7 +48,7 @@ navbar();
 
 console.log(userToken);
 var data ={
-    id:userId
+    "id":userId
 };    
 console.log(data)
 var xhr = new XMLHttpRequest();

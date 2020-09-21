@@ -75,8 +75,11 @@ document.querySelector(".card-submit").addEventListener("click",function(){
         }
          console.log(data.oldUrl) 
             var xhr = new XMLHttpRequest();
-            xhr.addEventListener("readystatechange", function() {
-              if(this.readyState === 4) {
+            xhr.open("POST", "https://shortify-api.herokuapp.com/generate/shortUrl");
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.setRequestHeader("Authorization", "JWT "+userToken);
+            xhr.send(JSON.stringify(data));
+            xhr.onload=function() {
                   if(this.status==200 || this.status==201){
                     setTimeout(()=>{
                         let newData = JSON.parse(this.responseText)
@@ -97,11 +100,6 @@ document.querySelector(".card-submit").addEventListener("click",function(){
                     document.querySelector(".paper-upper").classList.toggle('effect');
                   }
               }
-            });
-            xhr.open("POST", "https://api-shorty.herokuapp.com/generate/shortUrl");
-            xhr.setRequestHeader('Content-Type', 'application/json');
-            xhr.setRequestHeader("Authorization", "JWT "+userToken);
-            xhr.send(JSON.stringify(data));
     }
 });
 const copyfn=()=>{
