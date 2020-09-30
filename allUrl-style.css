@@ -7,7 +7,7 @@ body {
     scroll-behavior:smooth;
     position: relative;
     overflow: hidden;
-    width: 100%;
+    min-width: 100%;
     min-height: 100vh;
 }
 * {
@@ -149,6 +149,7 @@ nav .login:hover{
 .ham-active.hamburger .line1{
     transform:translate(0px,1vh) rotateZ(45deg);
     width: 23px;
+    background-color: black;
 }
 .ham-active.hamburger .line2{
     opacity: 0;
@@ -156,6 +157,23 @@ nav .login:hover{
 .ham-active.hamburger .line3{
     width: 23px;
     transform:translate(0px,-1vh) rotateZ(-45deg) ;
+    background-color: black;
+}
+.modal{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    z-index: 99 ;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.modal-active{
+    opacity: 1;
+    pointer-events: all;
 }
 .allurl-container{
     width: 70%;
@@ -163,10 +181,12 @@ nav .login:hover{
     top: 15vh;
     position: absolute;
     font-family: 'Poppins', sans-serif;
+    text-align: center;
 }
 .url-container{
     width:100%;
     height: 50px;
+    margin: 30px 0px;
     background-color: white;
     /* opacity: 0.9; */
     border-radius: 7px;
@@ -214,17 +234,60 @@ i{
 .clicks{
     width:50px;
     height: 100%;
+    position: relative;
+}
+::-webkit-scrollbar{
+    width: 0px;
+    background: transparent;
 }
 .clicks span{
     width:100%;
-    
+    display: block;
+    text-align: center;
 }
 .clicks .clicks-head{
     font-size: 10px;
     position: absolute;
-    top:0;
+    top:-10px;
+    left:0;
+    text-align: start;
+    display: inline;
     width:50px;
+    
 
+}
+.new-url,.old-url{
+    white-space: nowrap;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.url-container .old-url{
+    max-width: 90%;
+}
+.btn-login{
+    margin:15px auto;
+    padding:5px 10px;
+    display: inline-block;
+    border:1px solid white;
+    background-color: #161616;
+    font-size: 30px;
+    color: white;
+    font-family: 'Quicksand','sans-serif';
+    font-weight: 100;
+    font-size: 1.7em;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+.btn-login:hover{
+    box-shadow: 0 0 20px white;
+    background-color:white ;
+    color: #161616;
+    outline: none;
+}
+img{
+    margin: auto;
+    height: 60vh;
 }
 @keyframes startLink{
     from{
@@ -253,11 +316,11 @@ i{
         padding-bottom: 50%;
         position: absolute;
         right: 0;
-        top: 7vh;
+        top: 0vh;
         margin: 0;
         flex-direction: column;
-        width: 50%;
-        height: 93vh;
+        width: 75%;
+        height: 100vh;
         transform: translate(100%,0);
         background-color:white;
         color: black;
@@ -296,5 +359,25 @@ i{
     nav .login ul{
         height: 150px;
         transform: translate(0,10px);
+    }
+    .login a + ul{
+        pointer-events: all;
+    }
+    .login ul{
+        pointer-events: all;
+    }
+    .allurl-container{
+        width: 90%;
+        margin-right:5% ;
+        margin-left:5% ;
+    }
+    img{
+        height: 50vh;
+    }
+
+}
+@media screen and (max-width: 500px){
+    .old-url,.new-url{
+        font-size: 15px;
     }
 }
