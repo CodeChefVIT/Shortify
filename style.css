@@ -63,6 +63,8 @@ nav .login{
     color: black;
     border-radius: 5px;
     position: relative;
+    min-width: 80px;
+    text-align: center;
 }
 nav .login:hover{
     box-shadow: 0 0 15px white;
@@ -143,6 +145,22 @@ nav .login:hover{
     border-radius: 30%;
     transition: all 0.5s ease;
 }
+.modal{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    z-index: 99 ;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+.modal-active{
+    opacity: 1;
+    pointer-events: all;
+}
 section{
     height: 100vh;
     position: relative;
@@ -187,21 +205,6 @@ section{
     transform: translate(0,-50%);
     animation: craneMove 0.7s ease forwards 0.8;
 }
-/* .cranes:hover span {
-    animation: appear 1s ease-in;
-} */
-
-/* @keyframes appear {
-    from {
-        border-left: 3em solid transparent;
-        border-right: 3em solid transparent;
-        border-bottom: 3em solid;
-        position: absolute;
-        transform: rotate(0deg);
-        left: calc((52em - 3em) / 2);
-        top: calc((50em - 3em) / 2);
-    }
-} */
 .head {
     --left: 13;
     --right: 6;
@@ -727,6 +730,7 @@ section{
 .ham-active.hamburger .line1{
     transform:translate(0px,1vh) rotateZ(45deg);
     width: 23px;
+    background-color: black;
 }
 .ham-active.hamburger .line2{
     opacity: 0;
@@ -734,6 +738,7 @@ section{
 .ham-active.hamburger .line3{
     width: 23px;
     transform:translate(0px,-1vh) rotateZ(-45deg) ;
+    background-color: black;
 }
 @keyframes slideLink{
     from{
@@ -806,11 +811,11 @@ section{
         padding-bottom: 50%;
         position: absolute;
         right: 0;
-        top: 7vh;
+        top: 0vh;
         margin: 0;
         flex-direction: column;
-        width: 50%;
-        height: 93vh;
+        width:75%;
+        height: 100vh;
         transform: translate(100%,0);
         background-color:white;
         color: black;
@@ -852,5 +857,11 @@ section{
     nav .login ul{
         height: 150px;
         transform: translate(0,10px);
+    }
+    .login a + ul{
+        pointer-events: all;
+    }
+    .login ul{
+        pointer-events: all;
     }
 }

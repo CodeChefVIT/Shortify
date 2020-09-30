@@ -117,10 +117,10 @@ document.querySelector('.cranes').addEventListener('mouseout',()=>{
     document.querySelector('.crane-start').style.animation='';
     document.querySelector('.wing').style.animation=''
 })
-const navbar = ()=>{
+const mobNavToggler = ()=>{
     const navLinks = document.querySelectorAll('nav ul li')
-    document.querySelector('.hamburger').addEventListener('click',()=>{
-    document.querySelector('nav ul').classList.toggle('nv-active')
+    document.querySelector('nav ul').classList.toggle('nv-active');
+    document.querySelector('.modal').classList.toggle('modal-active');
     document.querySelector('.hamburger').classList.toggle('ham-active');
     navLinks.forEach((link,index)=>{
         if(link.style.animation.includes('slideLink')){
@@ -130,6 +130,13 @@ const navbar = ()=>{
             link.style.animation = `slideLink 0.5s ease forwards ${index/7 + 0.5}s`
         }
     });
+}
+const navbar = ()=>{
+    document.querySelector('.hamburger').addEventListener('click',()=>{
+        mobNavToggler();
+});
+    document.querySelector('.modal').addEventListener('click',()=>{
+        mobNavToggler();
 });
 };
 
