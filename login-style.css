@@ -363,6 +363,7 @@ input:focus + label::after, input:valid + label::after{
     width: 100%;
     cursor: pointer;
     text-align: center;
+    color:black;
     text-decoration: underline;
 }
 .login-form .alternate{

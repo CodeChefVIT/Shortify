@@ -108,7 +108,7 @@ const loginFn = (data)=>{
             console.log(respData);
             if(respData.err){
                 console.log(respData.err);
-                errBox(respData.message);
+                errBox(respData.err);
             }
             else{
                 localStorage.setItem('userInfo',JSON.stringify(respData.user));
