@@ -119,7 +119,8 @@ document.querySelector('.cranes').addEventListener('mouseout',()=>{
 })
 const mobNavToggler = ()=>{
     const navLinks = document.querySelectorAll('nav ul li')
-    document.querySelector('nav ul').classList.toggle('nv-active');
+    document.querySelector('nav').classList.toggle('nv-active');
+    document.querySelector('nav').classList.remove('nv-active-login');
     document.querySelector('.modal').classList.toggle('modal-active');
     document.querySelector('.hamburger').classList.toggle('ham-active');
     navLinks.forEach((link,index)=>{
@@ -131,6 +132,9 @@ const mobNavToggler = ()=>{
         }
     });
 }
+const mobNavMobile = ()=>{
+    document.querySelector('nav.nv-active').classList.toggle('nv-active-login');
+}
 const navbar = ()=>{
     document.querySelector('.hamburger').addEventListener('click',()=>{
         mobNavToggler();
@@ -138,6 +142,9 @@ const navbar = ()=>{
     document.querySelector('.modal').addEventListener('click',()=>{
         mobNavToggler();
 });
+    document.querySelector('.login').addEventListener('click',()=>{
+        mobNavMobile();
+    })
 };
 
 const local = ()=>{

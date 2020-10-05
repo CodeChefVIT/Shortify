@@ -6,9 +6,10 @@ window.onload = ()=>{
                 link.style.animation = `startLink 0.5s ease forwards ${index/7 + 0.2}s`
         });
 }
-const mobNavToggler =  ()=>{
+const mobNavToggler = ()=>{
   const navLinks = document.querySelectorAll('nav ul li')
-  document.querySelector('nav ul').classList.toggle('nv-active');
+  document.querySelector('nav').classList.toggle('nv-active');
+  document.querySelector('nav').classList.remove('nv-active-login');
   document.querySelector('.modal').classList.toggle('modal-active');
   document.querySelector('.hamburger').classList.toggle('ham-active');
   navLinks.forEach((link,index)=>{
@@ -20,13 +21,19 @@ const mobNavToggler =  ()=>{
       }
   });
 }
+const mobNavMobile = ()=>{
+  document.querySelector('nav.nv-active').classList.toggle('nv-active-login');
+}
 const navbar = ()=>{
   document.querySelector('.hamburger').addEventListener('click',()=>{
-    mobNavToggler();
+      mobNavToggler();
 });
   document.querySelector('.modal').addEventListener('click',()=>{
-    mobNavToggler();
+      mobNavToggler();
 });
+  document.querySelector('.login').addEventListener('click',()=>{
+      mobNavMobile();
+  })
 };
 const fetchUrls = ()=>{
   console.log(userToken);
