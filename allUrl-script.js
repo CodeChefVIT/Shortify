@@ -61,6 +61,7 @@ xhr.onload=function()
         document.querySelector('.allurl-container').innerHTML+=htmlString
       }
       expand();
+      copyLink();
     }
   }
   else{
@@ -107,6 +108,16 @@ const expand = ()=>{
       else{
         document.querySelectorAll(".url-container")[j].classList.remove("url-active");
       }
+  })
+}
+}
+const copyLink = ()=>{
+  const icon = document.querySelectorAll(".url-lower i");
+  const texts = document.querySelectorAll(".new-url");
+  console.log(icon)
+  for(let i=0; i<icon.length;i++){
+    icon[i].addEventListener("click",()=>{
+      navigator.clipboard.writeText(texts[i].innerHTML);
   })
 }
 }

@@ -12,7 +12,7 @@ const errBox = (message)=>{
 window.onload = ()=>{
     document.querySelector(".exit").addEventListener("click",()=>{
         console.log("exit")
-        window.location.href="./index.html";
+        window.location.href="./login.html";
     })
 }
 const ValidateForm = (mail,password)=> 

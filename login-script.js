@@ -7,6 +7,7 @@ const errBox = (message)=>{
     else{
         box.innerHTML = message;
         box.classList.add("err-show");
+        setTimeout(()=>{box.classList.remove("err-show");},3000)
     }
 }
 window.onload = function(){
@@ -30,23 +31,27 @@ window.onload = function(){
     for(let i=0;i<2;i++)
     document.querySelectorAll(".exit")[i].addEventListener("click",()=>{
         console.log("exit")
-        window.history.go(-1);
+        window.location.href="./index.html";
     })
 
 const ValidateForm = (mail,password,name=".")=> 
     {
-        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
-        {
-            if(password!='' && name!='')
-                return (true)
-        }
-    
-    return (false)
+        if(password!='' && name!='' && mail!=''){
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
+            {
+                return ("");
+            }
+            else{
+                return("Invalid Email");
+            }
+        } 
+    return ("All Feilds Required");
 }
     document.querySelector(".signup-form .submit-btn button").addEventListener("click",(e)=>{
         e.preventDefault();
         let inputs= document.querySelectorAll(".signup-form form input");
-        if(ValidateForm(inputs[1].value,inputs[2].value,inputs[0].value))
+        let validMsg = ValidateForm(inputs[1].value,inputs[2].value,inputs[0].value);
+        if(validMsg =="")
         {
             let data={
                 "name":inputs[0].value,
@@ -81,7 +86,7 @@ const ValidateForm = (mail,password,name=".")=>
             xhr.send(JSON.stringify(data));
         }
         else{
-            errBox("Invalid Credentials");
+            errBox(validMsg);
         }
 });
 document.querySelector(".login-form .submit-btn button").addEventListener("click",(e)=>{
@@ -92,10 +97,12 @@ document.querySelector(".login-form .submit-btn button").addEventListener("click
         "password":inputs[1].value
     }
     console.log(data);
-    if(ValidateForm(data.email,data.password))
+    let validMsg = ValidateForm(data.email,data.password)
+    console.log(validMsg)
+    if(validMsg=="")
         loginFn(data);
     else{
-        errBox("Invalid credentials");
+        errBox(validMsg);
     }
 });
 
@@ -114,7 +121,7 @@ const loginFn = (data)=>{
                 localStorage.setItem('userInfo',JSON.stringify(respData.user));
                 localStorage.setItem('userToken',JSON.stringify(respData.token))
                 errBox("");
-                window.history.go(-1);
+                window.location.href="./index.html";
             }
 
         }
