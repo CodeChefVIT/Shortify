@@ -395,6 +395,7 @@ section{
     transform-style: preserve-3d;
     border-bottom: none;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden
     transition: box-shadow 0.3s ease-in-out;
 }
 .paper-upper-back{
@@ -407,6 +408,7 @@ section{
     transform-style: preserve-3d;
     border-bottom: none;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden
     transition: box-shadow 0.3s ease-in-out;
 
 }

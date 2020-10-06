@@ -59,6 +59,7 @@ section{
 .login-form{
     background-color: rgba(255, 255, 255, 0.877);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     opacity: 0;
     /* pointer-events: none; */
     transition: opacity 0s ease 1.05s;
@@ -70,6 +71,7 @@ section{
 .signup-form{
     background-color: rgba(255, 255, 255, 0.877);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     transform: rotateY(180deg);
     opacity: 0;
     transition: opacity 0s ease 1.1s;
