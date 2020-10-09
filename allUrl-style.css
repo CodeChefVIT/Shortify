@@ -157,6 +157,19 @@ nav .login:hover{
     border-radius: 30%;
     transition: all 0.5s ease;
 }
+.ham-active.hamburger .line1{
+    transform:translate(0px,1vh) rotateZ(45deg);
+    width: 23px;
+    background-color: black;
+}
+.ham-active.hamburger .line2{
+    opacity: 0;
+}
+.ham-active.hamburger .line3{
+    width: 23px;
+    transform:translate(0px,-1vh) rotateZ(-45deg) ;
+    background-color: black;
+}
 .search-container{
     position: absolute;
     top:13vh;

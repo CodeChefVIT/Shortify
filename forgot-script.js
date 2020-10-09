@@ -7,6 +7,7 @@ const errBox = (message)=>{
     else{
         box.innerHTML = message;
         box.classList.add("err-show");
+        setTimeout(()=>{box.classList.remove("err-show");},3000)
     }
 }
 window.onload = ()=>{
@@ -15,15 +16,18 @@ window.onload = ()=>{
         window.location.href="./login.html";
     })
 }
-const ValidateForm = (mail,password)=> 
+const ValidateForm = (mail,password,name=".")=> 
     {
-        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
-        {
-            if(password!='')
-                return (true)
-        }
-    
-    return (false)
+        if(password!='' && name!='' && mail!=''){
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail))
+            {
+                return ("");
+            }
+            else{
+                return("Invalid Email");
+            }
+        } 
+    return ("All Feilds Required");
 }
 document.querySelector(".login-form .submit-btn button").addEventListener("click",(e)=>{
     e.preventDefault();
@@ -33,11 +37,11 @@ document.querySelector(".login-form .submit-btn button").addEventListener("click
         "newpass":inputs[1].value
     }
     console.log(data);
-    if(ValidateForm(data.email,data.newpass))
+    validForm = ValidateForm(data.email,data.newpass)
+    if(validForm=="")
         loginFn(data);
     else{
-        errBox("Invalid credentials");
-        console.log("here");
+        errBox(validForm);
     }
 });
 

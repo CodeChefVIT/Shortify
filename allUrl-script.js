@@ -53,6 +53,7 @@ xhr.onload=function()
     var data=JSON.parse(this.responseText)
     console.log(data);
     if(data.data.length<=0){
+      document.querySelector('.search-container').style.display="none";
       document.querySelector('.allurl-container').innerHTML="<img src='no-uls.png'><h1>No shortened links !</h1><a class='btn-login' href='./index.html#third'>Shorten</a>"
     }
     else{
@@ -90,6 +91,7 @@ const local = ()=>{
       });
   }
   else{
+    document.querySelector('.search-container').style.display="none";
       loginLi.innerHTML='<a href="./login.html">Login</a>'
       document.querySelector('.allurl-container').innerHTML='<img src="not-loggedin.png"><h1>User Not Logged In</h1><a class="btn-login" href="./login.html">Login</a>';
   }
@@ -127,7 +129,7 @@ const search = (data)=>{
   input.addEventListener("keyup",()=>{
   var urls = document.querySelectorAll('.url-container');
     for( var i=0; i<data.length; i++){
-      if(data[i].oldUrl.includes(input.value)){
+      if(data[i].oldUrl.toLowerCase().includes(input.value.toLowerCase())){
         if(urls[i].style.animation!=""){
           urls[i].style.animation = "urlShow 0.5s ease";
     }
