@@ -386,6 +386,9 @@ section{
     z-index: 20;
     box-shadow: 0 0 7px white;
     perspective: 800px;
+    backface-visibility:visible ;
+    -moz-backface-visibility:visible ;
+    -webkit-backface-visibility:visible ;
 }
 .paper-upper-front{
     width:100%;
