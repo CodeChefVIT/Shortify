@@ -208,6 +208,7 @@ nav .login:hover{
 .search-container input::placeholder{
     color: white;
     mix-blend-mode: difference;
+    padding-left: 5px;
 }
 .search-container span{
     content: "";
@@ -219,6 +220,40 @@ nav .login:hover{
     border-radius: 50%;
     z-index: -1;
     transform: translate(-50%,-50%);
+}
+.copied{
+    position: fixed;
+    top:0vh;
+    left:50%;
+    transform: translate(-50%,0);
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 5px white;
+    padding:3px 7px;
+    font-family: 'Poppins',sans-serif;
+    border-radius: 5px;
+    font-size: 12px;
+}
+@keyframes copyIn{
+    0%{
+        transform: translate(-50%,0);
+        opacity: 1;
+    }
+    15%{
+        transform: translate(-50%,12vh);
+        opacity: 1;
+    }
+    80%{
+        transform: translate(-50%,12vh);
+        opacity: 1;
+    }
+    85%{
+        opacity: 0;
+    }
+    100%{
+        transform: translate(-50%,0);
+        opacity: 0;
+    }
 }
 @keyframes searchBack{
     0%{
@@ -499,7 +534,7 @@ img{
         margin-left:5% ;
     }
     img{
-        height: 50vh;
+        height: 30vh;
     }
     .search-container{
         width:90%;

@@ -20,7 +20,9 @@ new fullpage('#fullpage', {
             document.querySelectorAll('.cont')[0].classList.add('cont-active');
             document.querySelectorAll('.cont')[1].classList.add('cont-active');
             document.querySelector('.manage').classList.add('ma-active');
-
+            document.getElementById("Vector_2").style.animation="V2 1s ease forwards 1.5s";
+            document.getElementById("Vector_21").style.animation="start 0.5s ease forwards 1s";
+            document.getElementById("Vector_22").style.animation="start 0.5s ease forwards 1.5s";
             (setTimeout(()=>{document.querySelector('#knowMore .arrow').classList.add('ar-active');},500));
         }
         if(destination.index===0){
@@ -35,6 +37,9 @@ new fullpage('#fullpage', {
             document.querySelectorAll('.cont')[1].classList.remove('cont-active');
             document.querySelector('.manage').classList.remove('ma-active');
             document.querySelector('#knowMore .arrow').classList.remove('ar-active');
+            document.getElementById("Vector_2").style.animation="";
+            document.getElementById("Vector_21").style.animation="";
+            document.getElementById("Vector_22").style.animation="";
         }
         if(origin.index===2){
             document.querySelector(".paper-upper").classList.add('effect');

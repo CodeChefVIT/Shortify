@@ -121,6 +121,8 @@ const copyLink = ()=>{
   for(let i=0; i<icon.length;i++){
     icon[i].addEventListener("click",()=>{
       navigator.clipboard.writeText(texts[i].innerHTML);
+      document.querySelector('.copied').style.animation = "";
+      setTimeout(()=>{document.querySelector('.copied').style.animation = "copyIn 5s ease";},1) 
   })
 }
 }
@@ -162,6 +164,5 @@ searchModal.addEventListener("click",()=>{
     span.style.animation = "";
     searchModal.style.display="none";
 })
-
 }
 searchAnimation();
