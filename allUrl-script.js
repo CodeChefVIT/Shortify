@@ -6,9 +6,10 @@ window.onload = ()=>{
                 link.style.animation = `startLink 0.5s ease forwards ${index/7 + 0.2}s`
         });
 }
-const mobNavToggler =  ()=>{
+const mobNavToggler = ()=>{
   const navLinks = document.querySelectorAll('nav ul li')
-  document.querySelector('nav ul').classList.toggle('nv-active');
+  document.querySelector('nav').classList.toggle('nv-active');
+  document.querySelector('nav').classList.remove('nv-active-login');
   document.querySelector('.modal').classList.toggle('modal-active');
   document.querySelector('.hamburger').classList.toggle('ham-active');
   navLinks.forEach((link,index)=>{
@@ -20,13 +21,19 @@ const mobNavToggler =  ()=>{
       }
   });
 }
+const mobNavMobile = ()=>{
+  document.querySelector('nav.nv-active').classList.toggle('nv-active-login');
+}
 const navbar = ()=>{
   document.querySelector('.hamburger').addEventListener('click',()=>{
-    mobNavToggler();
+      mobNavToggler();
 });
   document.querySelector('.modal').addEventListener('click',()=>{
-    mobNavToggler();
+      mobNavToggler();
 });
+  document.querySelector('.login').addEventListener('click',()=>{
+      mobNavMobile();
+  })
 };
 const fetchUrls = ()=>{
   console.log(userToken);
@@ -46,6 +53,7 @@ xhr.onload=function()
     var data=JSON.parse(this.responseText)
     console.log(data);
     if(data.data.length<=0){
+      document.querySelector('.search-container').style.display="none";
       document.querySelector('.allurl-container').innerHTML="<img src='no-uls.png'><h1>No shortened links !</h1><a class='btn-login' href='./index.html#third'>Shorten</a>"
     }
     else{
@@ -54,6 +62,8 @@ xhr.onload=function()
         document.querySelector('.allurl-container').innerHTML+=htmlString
       }
       expand();
+      copyLink();
+      search(data.data);
     }
   }
   else{
@@ -81,6 +91,7 @@ const local = ()=>{
       });
   }
   else{
+    document.querySelector('.search-container').style.display="none";
       loginLi.innerHTML='<a href="./login.html">Login</a>'
       document.querySelector('.allurl-container').innerHTML='<img src="not-loggedin.png"><h1>User Not Logged In</h1><a class="btn-login" href="./login.html">Login</a>';
   }
@@ -103,4 +114,55 @@ const expand = ()=>{
   })
 }
 }
+const copyLink = ()=>{
+  const icon = document.querySelectorAll(".url-lower i");
+  const texts = document.querySelectorAll(".new-url");
+  console.log(icon)
+  for(let i=0; i<icon.length;i++){
+    icon[i].addEventListener("click",()=>{
+      navigator.clipboard.writeText(texts[i].innerHTML);
+      document.querySelector('.copied').style.animation = "";
+      setTimeout(()=>{document.querySelector('.copied').style.animation = "copyIn 5s ease";},1) 
+  })
+}
+}
+const search = (data)=>{
+  input = document.querySelector('.search-container input');
+  input.addEventListener("keyup",()=>{
+  var urls = document.querySelectorAll('.url-container');
+    for( var i=0; i<data.length; i++){
+      if(data[i].oldUrl.toLowerCase().includes(input.value.toLowerCase())){
+        if(urls[i].style.animation!=""){
+          urls[i].style.animation = "urlShow 0.5s ease";
+    }
+  }
+    else{
+      urls[i].style.animation = "urlHide 0.5s ease forwards";
+      urls[i].classList.remove("url-active");
+    }
+  }
+  });
+}
 
+const searchAnimation = ()=>{
+  let cont = document.querySelector('.search-container'); 
+  let span = document.querySelector('.search-container span');
+  let searchModal = document.querySelector('.searchModal')
+  let input = document.querySelector('.search-container input');
+cont.onclick = function(e) { 
+    var x = e.pageX - this.offsetLeft; 
+    var y = e.pageY - this.offsetTop; 
+    
+    span.style.top = y + "px";
+    span.style.left = x + "px";
+    span.style.animation = "searchBack 1s ease forwards";
+    input.focus();
+    searchModal.style.display = "block";
+}
+searchModal.addEventListener("click",()=>{
+  if(input.value=="")
+    span.style.animation = "";
+    searchModal.style.display="none";
+})
+}
+searchAnimation();

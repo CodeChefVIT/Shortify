@@ -20,7 +20,9 @@ new fullpage('#fullpage', {
             document.querySelectorAll('.cont')[0].classList.add('cont-active');
             document.querySelectorAll('.cont')[1].classList.add('cont-active');
             document.querySelector('.manage').classList.add('ma-active');
-
+            document.getElementById("Vector_2").style.animation="V2 1s ease forwards 1.5s";
+            document.getElementById("Vector_21").style.animation="start 0.5s ease forwards 1s";
+            document.getElementById("Vector_22").style.animation="start 0.5s ease forwards 1.5s";
             (setTimeout(()=>{document.querySelector('#knowMore .arrow').classList.add('ar-active');},500));
         }
         if(destination.index===0){
@@ -35,6 +37,9 @@ new fullpage('#fullpage', {
             document.querySelectorAll('.cont')[1].classList.remove('cont-active');
             document.querySelector('.manage').classList.remove('ma-active');
             document.querySelector('#knowMore .arrow').classList.remove('ar-active');
+            document.getElementById("Vector_2").style.animation="";
+            document.getElementById("Vector_21").style.animation="";
+            document.getElementById("Vector_22").style.animation="";
         }
         if(origin.index===2){
             document.querySelector(".paper-upper").classList.add('effect');
@@ -119,7 +124,8 @@ document.querySelector('.cranes').addEventListener('mouseout',()=>{
 })
 const mobNavToggler = ()=>{
     const navLinks = document.querySelectorAll('nav ul li')
-    document.querySelector('nav ul').classList.toggle('nv-active');
+    document.querySelector('nav').classList.toggle('nv-active');
+    document.querySelector('nav').classList.remove('nv-active-login');
     document.querySelector('.modal').classList.toggle('modal-active');
     document.querySelector('.hamburger').classList.toggle('ham-active');
     navLinks.forEach((link,index)=>{
@@ -131,6 +137,9 @@ const mobNavToggler = ()=>{
         }
     });
 }
+const mobNavMobile = ()=>{
+    document.querySelector('nav.nv-active').classList.toggle('nv-active-login');
+}
 const navbar = ()=>{
     document.querySelector('.hamburger').addEventListener('click',()=>{
         mobNavToggler();
@@ -138,6 +147,9 @@ const navbar = ()=>{
     document.querySelector('.modal').addEventListener('click',()=>{
         mobNavToggler();
 });
+    document.querySelector('.login').addEventListener('click',()=>{
+        mobNavMobile();
+    })
 };
 
 const local = ()=>{

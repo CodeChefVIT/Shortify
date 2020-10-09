@@ -23,6 +23,8 @@ nav{
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    transition:all 0.5s ease;
+    
 }
 nav h1{
     margin: 0 20px;
@@ -57,6 +59,9 @@ nav ul li:hover{
     color: white;
     text-shadow: 0 0 5px white;
 }
+nav .login-container{
+    padding-bottom:5px;
+}
 nav .login{
     border: 1px solid white;
     background-color: white;
@@ -65,6 +70,7 @@ nav .login{
     position: relative;
     min-width: 80px;
     text-align: center;
+    padding: 3px 2px;
 }
 nav .login:hover{
     box-shadow: 0 0 15px white;
@@ -95,6 +101,7 @@ nav .login:hover{
     transition: all 0.3s ease;
     opacity: 0;
     pointer-events: none;
+    cursor: pointer;
 }
 .login ul li:hover{
     background-color: rgb(228, 225, 225);
@@ -110,7 +117,7 @@ nav .login:hover{
     pointer-events: none;
 }
 
-.login a:hover + ul>li, .login a +ul:hover>li{
+.login-container:hover>.login a + ul>li, .login-container ul:hover>li{
     transform: translateX(0);
     opacity: 1;
     pointer-events: all;
@@ -118,7 +125,10 @@ nav .login:hover{
 
 .hamburger{
     height: 2.2vh;
-    margin:2.4vh 10px;
+    /* margin:2.4vh 10px; */
+    position: absolute;
+    top:2.4vh;
+    right:10px;
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -386,6 +396,7 @@ section{
     transform-style: preserve-3d;
     border-bottom: none;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     transition: box-shadow 0.3s ease-in-out;
 }
 .paper-upper-back{
@@ -398,6 +409,7 @@ section{
     transform-style: preserve-3d;
     border-bottom: none;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     transition: box-shadow 0.3s ease-in-out;
 
 }
@@ -581,10 +593,15 @@ section{
 }
 
 #knowMore .info{
-    width:80%;
-    margin:20px auto;
+    width:60%;
+    margin:20px 5% 20px 35%;
     position: relative;
     height: 200px;
+}
+svg{
+    position: absolute;
+    height: 65vh;
+    width: 30%;
 }
 .info .img{
     display: inline-block;
@@ -740,14 +757,38 @@ section{
     transform:translate(0px,-1vh) rotateZ(-45deg) ;
     background-color: black;
 }
+#Vector_2{
+    transition: 1s;
+    transform-box: fill-box;
+    transform-origin: bottom right;
+}
+#Vector_21,#Vector_22{
+    opacity: 0;
+}
 @keyframes slideLink{
     from{
         opacity: 0;
-        transform: translate(5px);
+        transform: translate(0,-5px);
     }
     to{
         opacity: 1;
         transform: translate(0);
+    }
+}
+@keyframes V2{
+    0%{
+        transform: rotateZ(0deg);
+    }
+    50%{
+        transform: rotateZ(-30deg);
+    }
+    100%{
+        transform: rotateZ(0deg);
+    }
+}
+@media screen and (max-width:1200px){
+    .info .cont{
+        font-size:20px;
     }
 }
 @media screen and (max-width:1100px){
@@ -760,7 +801,14 @@ section{
 }
 @media screen and (max-width:1000px){
     .info .cont{
-        font-size:18px;
+        font-size:23px;
+    }
+    svg{
+        display: none;
+    }
+    #knowMore .info{
+        width:80%;
+        margin:20px auto;
     }
 } 
 @media screen and (max-width:900px){
@@ -768,7 +816,20 @@ section{
         font-size: 1em;
     }
 }
+@media screen and (max-width:800px){
+    .info .cont{
+        font-size:18px;
+    }
+}
 @media screen and (max-width:700px){
+    nav{
+        overflow: hidden;
+    }
+    nav h1{
+        position: absolute;
+        top: 0;
+        left:20px;
+    }
     .cranes{
         display: none;
     }
@@ -807,17 +868,14 @@ section{
         display: flex;
     }
     nav ul{
-        padding: 10%;
-        padding-bottom: 50%;
         position: absolute;
         right: 0;
-        top: 0vh;
+        top: 9vh;
         margin: 0;
         flex-direction: column;
-        width:75%;
-        height: 100vh;
-        transform: translate(100%,0);
-        background-color:white;
+        width:100%;
+        height: 40vh;
+        /* background-color:white; */
         color: black;
         align-items: center;
         transition: all 0.5s ease;
@@ -843,20 +901,40 @@ section{
         text-shadow: none;
     }
     .nv-active{
-        transform: translate(0,0);
+        height: 49vh;
+        color: black;
+        background-color: white;
+        border-bottom-right-radius: 10%;
+        border-bottom-left-radius: 10%;
+    }
+    .nv-active-login{
+        height: 55vh;
+        border-bottom-right-radius: 0%;
+        border-bottom-left-radius: 0%;
     }
     nav .login{
         border: 1px solid white;
         background-color: black;
-        color: white;
+        color: white !important;
     }
     nav .login:hover{
         box-shadow: 0 0 10px white;
         color: black;
     }
     nav .login ul{
-        height: 150px;
-        transform: translate(0,10px);
+        height: 6vh;
+        position: absolute;
+        margin-top:4.1vh ;
+        left:-webkit-calc(-50vw + 50%);
+        left:-moz-calc(-50vw + 50%);
+        left:calc(-50vw + 50%);
+        width: 100vw;
+        background-color: rgb(30, 30, 30);
+        flex-direction: row;
+    }
+    nav .login ul li{
+        background-color: transparent;
+        color: white;
     }
     .login a + ul{
         pointer-events: all;

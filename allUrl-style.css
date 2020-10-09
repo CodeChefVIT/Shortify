@@ -21,11 +21,13 @@ nav{
     background: #161616;
     width: 100%;
     height: 9vh;
-    position: fixed;
+    position: absolute;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 100;
+    transition:all 0.5s ease;
+    
 }
 nav h1{
     margin: 0 20px;
@@ -60,12 +62,18 @@ nav ul li:hover{
     color: white;
     text-shadow: 0 0 5px white;
 }
+nav .login-container{
+    padding-bottom:5px;
+}
 nav .login{
     border: 1px solid white;
     background-color: white;
     color: black;
     border-radius: 5px;
     position: relative;
+    min-width: 80px;
+    text-align: center;
+    padding: 3px 2px;
 }
 nav .login:hover{
     box-shadow: 0 0 15px white;
@@ -96,6 +104,7 @@ nav .login:hover{
     transition: all 0.3s ease;
     opacity: 0;
     pointer-events: none;
+    cursor: pointer;
 }
 .login ul li:hover{
     background-color: rgb(228, 225, 225);
@@ -105,13 +114,12 @@ nav .login:hover{
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     transform: translateX(-20px);
-    
 }
 .login a + ul{
     pointer-events: none;
 }
 
-.login a:hover + ul>li, .login a +ul:hover>li{
+.login-container:hover>.login a + ul>li, .login-container ul:hover>li{
     transform: translateX(0);
     opacity: 1;
     pointer-events: all;
@@ -119,7 +127,10 @@ nav .login:hover{
 
 .hamburger{
     height: 2.2vh;
-    margin:2.4vh 10px;
+    /* margin:2.4vh 10px; */
+    position: absolute;
+    top:2.4vh;
+    right:10px;
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -159,6 +170,121 @@ nav .login:hover{
     transform:translate(0px,-1vh) rotateZ(-45deg) ;
     background-color: black;
 }
+.search-container{
+    position: absolute;
+    top:13vh;
+    height:40px;
+    width:275px;
+    right:15%;
+    border: 1px solid grey;
+    border-radius: 7px;
+    overflow: hidden;
+    display: flex;
+    z-index:3;
+}
+.search-container .search-icon{
+    width:15%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    vertical-align: 40px;
+    color: white;
+    mix-blend-mode: difference;
+    font-size: 1em;
+}
+.search-container input{
+    height: 100%;
+    width:85%;
+    font-size: 23px;
+    font-weight: 100;
+    font-family: 'Poppins',sans-serif;
+    border: none;
+    outline: none;
+    background: none;
+    color: black;
+}
+.search-container input::placeholder{
+    color: white;
+    mix-blend-mode: difference;
+    padding-left: 5px;
+}
+.search-container span{
+    content: "";
+    width:0;
+    height: 0;
+    display: block;
+    background-color: white;
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    transform: translate(-50%,-50%);
+}
+.copied{
+    position: fixed;
+    top:0vh;
+    left:50%;
+    transform: translate(-50%,0);
+    background-color: white;
+    color: black;
+    box-shadow: 0px 0px 5px white;
+    padding:3px 7px;
+    font-family: 'Poppins',sans-serif;
+    border-radius: 5px;
+    font-size: 12px;
+}
+@keyframes copyIn{
+    0%{
+        transform: translate(-50%,0);
+        opacity: 1;
+    }
+    15%{
+        transform: translate(-50%,12vh);
+        opacity: 1;
+    }
+    80%{
+        transform: translate(-50%,12vh);
+        opacity: 1;
+    }
+    85%{
+        opacity: 0;
+    }
+    100%{
+        transform: translate(-50%,0);
+        opacity: 0;
+    }
+}
+@keyframes searchBack{
+    0%{
+        height: 0;
+        width: 0;
+        
+        z-index: -1;
+    }
+    100%{
+        height:600px;
+        width:600px;
+        z-index: -1;
+    
+    }
+}
+@keyframes urlHide{
+    to{
+        height:0px;
+        opacity:0;
+    }
+}
+@keyframes urlShow{
+    from{
+        opacity: 0;
+        height: 0px;
+    }
+    to{
+        opacity:1;
+        height: 50px;
+    }
+}
 .modal{
     position: fixed;
     background-color: rgba(0, 0, 0, 0.7);
@@ -170,6 +296,15 @@ nav .login:hover{
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+}
+.searchModal{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    z-index: 2 ;
+    display:none;
 }
 .modal-active{
     opacity: 1;
@@ -265,6 +400,9 @@ i{
 .url-container .old-url{
     max-width: 90%;
 }
+.new-url{
+    font-size: 15px;
+}
 .btn-login{
     margin:15px auto;
     padding:5px 10px;
@@ -300,7 +438,7 @@ img{
 @keyframes slideLink{
     from{
         opacity: 0;
-        transform: translate(5px);
+        transform: translate(0,-5px);
     }
     to{
         opacity: 1;
@@ -308,26 +446,30 @@ img{
     }
 }
 @media screen and (max-width:700px){
+    nav{
+        overflow: hidden;
+    }
+    nav h1{
+        position: absolute;
+        top: 0;
+        left:20px;
+    }
     .hamburger{
         display: flex;
     }
     nav ul{
-        padding: 10%;
-        padding-bottom: 50%;
         position: absolute;
         right: 0;
-        top: 0vh;
+        top: 9vh;
         margin: 0;
         flex-direction: column;
-        width: 75%;
-        height: 100vh;
-        transform: translate(100%,0);
-        background-color:white;
+        width:100%;
+        height: 40vh;
+        /* background-color:white; */
         color: black;
         align-items: center;
         transition: all 0.5s ease;
     }
-    
     nav ul li{
         opacity: 0;
         transform: translate(5px);
@@ -345,20 +487,40 @@ img{
         text-shadow: none;
     }
     .nv-active{
-        transform: translate(0,0);
+        height: 49vh;
+        color: black;
+        background-color: white;
+        border-bottom-right-radius: 10%;
+        border-bottom-left-radius: 10%;
+    }
+    .nv-active-login{
+        height: 55vh;
+        border-bottom-right-radius: 0%;
+        border-bottom-left-radius: 0%;
     }
     nav .login{
         border: 1px solid white;
         background-color: black;
-        color: white;
+        color: white !important;
     }
     nav .login:hover{
         box-shadow: 0 0 10px white;
         color: black;
     }
     nav .login ul{
-        height: 150px;
-        transform: translate(0,10px);
+        height: 6vh;
+        position: absolute;
+        margin-top:4.1vh ;
+        left:-webkit-calc(-50vw + 50%);
+        left:-moz-calc(-50vw + 50%);
+        left:calc(-50vw + 50%);
+        width: 100vw;
+        background-color: rgb(30, 30, 30);
+        flex-direction: row;
+    }
+    nav .login ul li{
+        background-color: transparent;
+        color: white;
     }
     .login a + ul{
         pointer-events: all;
@@ -372,12 +534,32 @@ img{
         margin-left:5% ;
     }
     img{
-        height: 50vh;
+        height: 30vh;
+    }
+    .search-container{
+        width:90%;
+        right:5%;
+    }
+    @keyframes searchBack{
+        0%{
+            height: 0;
+            width: 0;
+            z-index: -1;
+        }
+        100%{
+            height:180vw;
+            width:180vw;
+            z-index: -1;
+        
+        }
     }
 
 }
 @media screen and (max-width: 500px){
-    .old-url,.new-url{
+    .old-url{
         font-size: 15px;
+    }
+    .new-url{
+        font-size: 13px;
     }
 }
