@@ -101,6 +101,7 @@ nav .login:hover{
     transition: all 0.3s ease;
     opacity: 0;
     pointer-events: none;
+    cursor: pointer;
 }
 .login ul li:hover{
     background-color: rgb(228, 225, 225);

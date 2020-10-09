@@ -62,6 +62,7 @@ xhr.onload=function()
       }
       expand();
       copyLink();
+      search(data.data);
     }
   }
   else{
@@ -121,4 +122,44 @@ const copyLink = ()=>{
   })
 }
 }
+const search = (data)=>{
+  input = document.querySelector('.search-container input');
+  input.addEventListener("keyup",()=>{
+  var urls = document.querySelectorAll('.url-container');
+    for( var i=0; i<data.length; i++){
+      if(data[i].oldUrl.includes(input.value)){
+        if(urls[i].style.animation!=""){
+          urls[i].style.animation = "urlShow 0.5s ease";
+    }
+  }
+    else{
+      urls[i].style.animation = "urlHide 0.5s ease forwards";
+      urls[i].classList.remove("url-active");
+    }
+  }
+  });
+}
 
+const searchAnimation = ()=>{
+  let cont = document.querySelector('.search-container'); 
+  let span = document.querySelector('.search-container span');
+  let searchModal = document.querySelector('.searchModal')
+  let input = document.querySelector('.search-container input');
+cont.onclick = function(e) { 
+    var x = e.pageX - this.offsetLeft; 
+    var y = e.pageY - this.offsetTop; 
+    
+    span.style.top = y + "px";
+    span.style.left = x + "px";
+    span.style.animation = "searchBack 1s ease forwards";
+    input.focus();
+    searchModal.style.display = "block";
+}
+searchModal.addEventListener("click",()=>{
+  if(input.value=="")
+    span.style.animation = "";
+    searchModal.style.display="none";
+})
+
+}
+searchAnimation();

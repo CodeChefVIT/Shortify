@@ -104,6 +104,7 @@ nav .login:hover{
     transition: all 0.3s ease;
     opacity: 0;
     pointer-events: none;
+    cursor: pointer;
 }
 .login ul li:hover{
     background-color: rgb(228, 225, 225);
@@ -113,7 +114,6 @@ nav .login:hover{
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     transform: translateX(-20px);
-    
 }
 .login a + ul{
     pointer-events: none;
@@ -157,6 +157,86 @@ nav .login:hover{
     border-radius: 30%;
     transition: all 0.5s ease;
 }
+.search-container{
+    position: absolute;
+    top:13vh;
+    height:40px;
+    width:275px;
+    right:15%;
+    border: 1px solid grey;
+    border-radius: 7px;
+    overflow: hidden;
+    display: flex;
+    z-index:3;
+}
+.search-container .search-icon{
+    width:15%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    vertical-align: 40px;
+    color: white;
+    mix-blend-mode: difference;
+    font-size: 1em;
+}
+.search-container input{
+    height: 100%;
+    width:85%;
+    font-size: 23px;
+    font-weight: 100;
+    font-family: 'Poppins',sans-serif;
+    border: none;
+    outline: none;
+    background: none;
+    color: black;
+}
+.search-container input::placeholder{
+    color: white;
+    mix-blend-mode: difference;
+}
+.search-container span{
+    content: "";
+    width:0;
+    height: 0;
+    display: block;
+    background-color: white;
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    transform: translate(-50%,-50%);
+}
+@keyframes searchBack{
+    0%{
+        height: 0;
+        width: 0;
+        
+        z-index: -1;
+    }
+    100%{
+        height:600px;
+        width:600px;
+        z-index: -1;
+    
+    }
+}
+@keyframes urlHide{
+    to{
+        height:0px;
+        opacity:0;
+    }
+}
+@keyframes urlShow{
+    from{
+        opacity: 0;
+        height: 0px;
+    }
+    to{
+        opacity:1;
+        height: 50px;
+    }
+}
 .modal{
     position: fixed;
     background-color: rgba(0, 0, 0, 0.7);
@@ -168,6 +248,15 @@ nav .login:hover{
     opacity: 0;
     pointer-events: none;
     transition: all 0.3s ease;
+}
+.searchModal{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    z-index: 2 ;
+    display:none;
 }
 .modal-active{
     opacity: 1;
@@ -262,6 +351,9 @@ i{
 }
 .url-container .old-url{
     max-width: 90%;
+}
+.new-url{
+    font-size: 15px;
 }
 .btn-login{
     margin:15px auto;
@@ -396,10 +488,30 @@ img{
     img{
         height: 50vh;
     }
+    .search-container{
+        width:90%;
+        right:5%;
+    }
+    @keyframes searchBack{
+        0%{
+            height: 0;
+            width: 0;
+            z-index: -1;
+        }
+        100%{
+            height:180vw;
+            width:180vw;
+            z-index: -1;
+        
+        }
+    }
 
 }
 @media screen and (max-width: 500px){
-    .old-url,.new-url{
+    .old-url{
         font-size: 15px;
+    }
+    .new-url{
+        font-size: 13px;
     }
 }
