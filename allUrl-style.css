@@ -211,7 +211,6 @@ nav .login:hover{
     padding-left: 5px;
 }
 .search-container span{
-    content: "";
     width:0;
     height: 0;
     display: block;
@@ -233,6 +232,7 @@ nav .login:hover{
     font-family: 'Poppins',sans-serif;
     border-radius: 5px;
     font-size: 12px;
+    z-index: 50;
 }
 @keyframes copyIn{
     0%{
